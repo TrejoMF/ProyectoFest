@@ -1,0 +1,25 @@
+DATOS SEGMENT para "datos"
+	num1 dw 20
+	num2 dw 30
+	num3 dw ?
+DATOS ENDS
+
+PILA SEGMENT STACK "STACK"
+	dw 32 dup(0)
+PILA ENDS
+
+CODE SEGMENT
+	assume cs: codigo, ds:datos, ss:pila
+
+START PROC
+	mov ax, datos
+	mov ds, ax
+	mov ax, num1
+	mov ax, num2
+	mov num3, ax
+	mov dx, num3
+	mov ax, 4c00h
+	int 21h
+START ENDP
+CODE ENDS
+END START
